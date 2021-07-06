@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class UsuarioService {
+public class UsuariosService {
 
     private UsuarioRepository usuarioRepository;
     private VendedorRepository vendedorRepository;
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository,
-                             VendedorRepository vendedorRepository){
+    public UsuariosService(UsuarioRepository usuarioRepository,
+                           VendedorRepository vendedorRepository){
         this.usuarioRepository = usuarioRepository;
         this.vendedorRepository = vendedorRepository;
     }
@@ -35,5 +35,9 @@ public class UsuarioService {
 
     public UsuarioRepository getUsuarioRepository() {
         return usuarioRepository;
+    }
+
+    public VendedorRepository getVendedorRepository(){
+        return vendedorRepository;
     }
 }
