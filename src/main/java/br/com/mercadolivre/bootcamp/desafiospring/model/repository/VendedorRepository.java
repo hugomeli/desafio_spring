@@ -1,6 +1,7 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.repository;
 
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Vendedor;
+import br.com.mercadolivre.bootcamp.desafiospring.validations.exception.VendedorInvalidoException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -32,9 +33,13 @@ public class VendedorRepository {
     }
 
     public Vendedor getVendedorById(long idVendedor){
-        return this.listaVendedores.stream()
+        Vendedor vendedorEncontrado = this.listaVendedores.stream()
                 .filter(vendedor -> vendedor.getId() == (idVendedor))
                 .findFirst()
                 .orElse(null);
+        if (vendedorEncontrado != null){
+            return vendedorEncontrado;
+        }
+        throw new VendedorInvalidoException();
     }
 }
