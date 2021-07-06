@@ -1,10 +1,13 @@
 package br.com.mercadolivre.bootcamp.desafiospring.controller;
 
 
+import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Usuario;
 import br.com.mercadolivre.bootcamp.desafiospring.model.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")

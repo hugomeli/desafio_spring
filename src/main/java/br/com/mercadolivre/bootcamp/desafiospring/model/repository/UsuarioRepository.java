@@ -17,13 +17,13 @@ public class UsuarioRepository {
         this.listaUsuarios = new ArrayList<>(Arrays.asList(
                 new Usuario(15L,
                         "Joao Carlos",
-                        null),
+                        new ArrayList<>()),
                 new Usuario(16L,
                         "Maria Lucia",
-                        null),
+                        new ArrayList<>()),
                 new Usuario(17L,
                         "Antonio dos Santos",
-                        null)
+                        new ArrayList<>())
         ));
     }
 

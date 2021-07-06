@@ -17,13 +17,13 @@ public class VendedorRepository {
         this.listaVendedores = new ArrayList<>(Arrays.asList(
                 new Vendedor(255L,
                         "Godofredo Alves",
-                        null),
+                        new ArrayList<>()),
                 new Vendedor(256L,
                         "Morgana Silva",
-                        null),
+                        new ArrayList<>()),
                 new Vendedor(257L,
                         "Adelaide Silveira",
-                        null)
+                        new ArrayList<>())
         ));
     }
 

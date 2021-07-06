@@ -1,5 +1,6 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vendedor {
@@ -36,5 +37,9 @@ public class Vendedor {
 
     public void setListaUsuariosSeguidores(List<Usuario> listaUsuariosSeguidores) {
         this.listaUsuariosSeguidores = listaUsuariosSeguidores;
+    }
+
+    public void adicionaUsuarioSeguidor(Usuario usuario) {
+        this.listaUsuariosSeguidores.add(usuario);
     }
 }
