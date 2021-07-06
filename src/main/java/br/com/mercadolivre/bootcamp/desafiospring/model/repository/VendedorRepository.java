@@ -16,13 +16,13 @@ public class VendedorRepository {
         // Criacao de 3 vendedores
         this.listaVendedores = new ArrayList<>(Arrays.asList(
                 new Vendedor(255L,
-                        "Godofredo Alves",
+                        "godofredo",
                         new ArrayList<>()),
                 new Vendedor(256L,
-                        "Morgana Silva",
+                        "mlucia",
                         new ArrayList<>()),
                 new Vendedor(257L,
-                        "Adelaide Silveira",
+                        "adesilva",
                         new ArrayList<>())
         ));
     }

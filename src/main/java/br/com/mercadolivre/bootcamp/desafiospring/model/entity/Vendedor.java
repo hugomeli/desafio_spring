@@ -1,17 +1,16 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Vendedor {
 
     private Long id;
-    private String nome;
+    private String userName;
     private List<Usuario> listaUsuariosSeguidores;
 
-    public Vendedor(Long id, String nome, List<Usuario> listaUsuariosSeguidores) {
+    public Vendedor(Long id, String userName, List<Usuario> listaUsuariosSeguidores) {
         this.id = id;
-        this.nome = nome;
+        this.userName = userName;
         this.listaUsuariosSeguidores = listaUsuariosSeguidores;
     }
 
@@ -23,12 +22,12 @@ public class Vendedor {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public List<Usuario> getListaUsuariosSeguidores() {

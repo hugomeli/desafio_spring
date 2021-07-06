@@ -16,13 +16,13 @@ public class UsuarioRepository {
         // Criacao de 3 usuarios
         this.listaUsuarios = new ArrayList<>(Arrays.asList(
                 new Usuario(15L,
-                        "Joao Carlos",
+                        "jcarlos",
                         new ArrayList<>()),
                 new Usuario(16L,
-                        "Maria Lucia",
+                        "mlucia",
                         new ArrayList<>()),
                 new Usuario(17L,
-                        "Antonio dos Santos",
+                        "antoniosantos",
                         new ArrayList<>())
         ));
     }

@@ -6,7 +6,7 @@ import java.util.List;
 public class Usuario {
 
     private Long id;
-    private String nome;
+    private String userName;
     private List<Vendedor> listaVendedoresSeguidos;
 
     public Usuario() {
@@ -14,7 +14,7 @@ public class Usuario {
 
     public Usuario(Long id, String nome, List<Vendedor> listaVendedoresSeguidos) {
         this.id = id;
-        this.nome = nome;
+        this.userName = nome;
         this.listaVendedoresSeguidos = listaVendedoresSeguidos;
     }
 
@@ -27,11 +27,11 @@ public class Usuario {
     }
 
     public String getNome() {
-        return nome;
+        return userName;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.userName = nome;
     }
 
     public List<Vendedor> getListaVendedoresSeguidos() {
