@@ -23,8 +23,11 @@ public class PublicacaoService {
     }
 
     public ResponseEntity<?> adicionaPostagem(Publicacao publicacao){
-        this.publicacaoRepository.save(publicacao);
-        return ResponseEntity.ok().build();
+        if (!publicacaoJaExiste(publicacao)){
+            this.publicacaoRepository.save(publicacao);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     public boolean formValido(PublicacaoFormDTO publicacaoFormDTO){
@@ -43,5 +46,11 @@ public class PublicacaoService {
 
     public boolean vendedorExiste(Long userId){
         return vendedorRepository.getVendedorById(userId) != null;
+    }
+
+    public boolean publicacaoJaExiste(Publicacao publicacaoProcurada){
+        return publicacaoRepository.getAll()
+                .stream()
+                .anyMatch(publicacao -> publicacao.getIdPost().equals(publicacaoProcurada.getIdPost()));
     }
 }
