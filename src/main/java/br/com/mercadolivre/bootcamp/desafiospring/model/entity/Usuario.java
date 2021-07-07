@@ -11,9 +11,9 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long userId, String nome, List<Vendedor> listaVendedoresSeguidos) {
+    public Usuario(Long userId, String userName, List<Vendedor> listaVendedoresSeguidos) {
         this.userId = userId;
-        this.userName = nome;
+        this.userName = userName;
         this.listaVendedoresSeguidos = listaVendedoresSeguidos;
     }
 
@@ -25,12 +25,12 @@ public class Usuario {
         this.userId = userId;
     }
 
-    public String getNome() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setNome(String nome) {
-        this.userName = nome;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public List<Vendedor> getListaVendedoresSeguidos() {
