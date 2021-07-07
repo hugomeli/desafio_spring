@@ -19,7 +19,7 @@ public class VendedorContagemSeguidoresDTO {
 
     public static VendedorContagemSeguidoresDTO converte(Vendedor vendedor){
         return new VendedorContagemSeguidoresDTO(
-                vendedor.getId(),
+                vendedor.getUserId(),
                 vendedor.getUserName(),
                 vendedor.getListaUsuariosSeguidores().size()
         );

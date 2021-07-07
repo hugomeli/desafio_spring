@@ -34,7 +34,7 @@ public class VendedorRepository {
 
     public Vendedor getVendedorById(long idVendedor){
         Vendedor vendedorEncontrado = this.listaVendedores.stream()
-                .filter(vendedor -> vendedor.getId() == (idVendedor))
+                .filter(vendedor -> vendedor.getUserId() == (idVendedor))
                 .findFirst()
                 .orElse(null);
         if (vendedorEncontrado != null){

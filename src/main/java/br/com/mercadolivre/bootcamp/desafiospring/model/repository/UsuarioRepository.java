@@ -2,7 +2,6 @@ package br.com.mercadolivre.bootcamp.desafiospring.model.repository;
 
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Usuario;
 import br.com.mercadolivre.bootcamp.desafiospring.validations.exception.UsuarioInvalidoException;
-import br.com.mercadolivre.bootcamp.desafiospring.validations.exception.VendedorInvalidoException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class UsuarioRepository {
 
     public Usuario getUsuarioById(long idUsuario){
         Usuario usuarioEncontrado = this.listaUsuarios.stream()
-                .filter(usuario -> usuario.getId() == (idUsuario))
+                .filter(usuario -> usuario.getUserId() == (idUsuario))
                 .findFirst()
                 .orElse(null);
         if (usuarioEncontrado != null){

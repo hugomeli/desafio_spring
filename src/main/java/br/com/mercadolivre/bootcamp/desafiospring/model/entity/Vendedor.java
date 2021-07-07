@@ -4,22 +4,22 @@ import java.util.List;
 
 public class Vendedor {
 
-    private Long id;
+    private Long userId;
     private String userName;
     private List<Usuario> listaUsuariosSeguidores;
 
-    public Vendedor(Long id, String userName, List<Usuario> listaUsuariosSeguidores) {
-        this.id = id;
+    public Vendedor(Long userId, String userName, List<Usuario> listaUsuariosSeguidores) {
+        this.userId = userId;
         this.userName = userName;
         this.listaUsuariosSeguidores = listaUsuariosSeguidores;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {

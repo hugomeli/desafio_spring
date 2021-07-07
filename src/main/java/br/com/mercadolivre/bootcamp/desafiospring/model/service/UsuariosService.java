@@ -46,6 +46,6 @@ public class UsuariosService {
 
     public static boolean checaUsuarioSegueVendedor(Usuario usuario, Vendedor vendedorEncontrado){
         return usuario.getListaVendedoresSeguidos().stream()
-                .noneMatch(vendedor -> vendedor.getId().equals(vendedorEncontrado.getId()));
+                .noneMatch(vendedor -> vendedor.getUserId().equals(vendedorEncontrado.getUserId()));
     }
 }
