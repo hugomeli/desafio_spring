@@ -1,6 +1,8 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.dtos;
 
 
+import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Publicacao;
+
 import java.util.List;
 
 public class PublicacoesRecentesDTO {
@@ -30,5 +32,12 @@ public class PublicacoesRecentesDTO {
 
     public void setPosts(List<PublicacaoDTO> posts) {
         this.posts = posts;
+    }
+
+    public static PublicacoesRecentesDTO converte(Long userId, List<Publicacao> publicacoes){
+        return new PublicacoesRecentesDTO(
+                userId,
+                PublicacaoDTO.converte(publicacoes)
+        );
     }
 }

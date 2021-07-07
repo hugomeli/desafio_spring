@@ -3,6 +3,9 @@ package br.com.mercadolivre.bootcamp.desafiospring.model.dtos;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Publicacao;
 import br.com.mercadolivre.bootcamp.desafiospring.utils.SomeUtils;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 public class PublicacaoDTO {
 
@@ -31,6 +34,11 @@ public class PublicacaoDTO {
                 publicacao.getCategory(),
                 publicacao.getPrice()
         );
+    }
+
+    public static List<PublicacaoDTO> converte(List<Publicacao> publicacoes){
+        return publicacoes.stream().map(PublicacaoDTO::converte)
+                .collect(Collectors.toList());
     }
 
     public Long getId_post() {
