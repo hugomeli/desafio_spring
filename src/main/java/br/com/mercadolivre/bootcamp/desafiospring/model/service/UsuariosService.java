@@ -62,4 +62,14 @@ public class UsuariosService {
         Usuario usuarioEncontrado = this.usuarioRepository.getUsuarioById(userId);
         return VendedoresQueUsuarioSegueDTO.converte(usuarioEncontrado, usuarioEncontrado.getListaVendedoresSeguidos());
     }
+
+    public ResponseEntity<?> deixarDeSeguir(Long userId, Long userToUnfollowId){
+        Usuario usuario = this.usuarioRepository.getUsuarioById(userId);
+        Vendedor vendedor = this.vendedorRepository.getVendedorById(userToUnfollowId);
+        if (usuario.getListaVendedoresSeguidos().remove(vendedor) &&(
+                vendedor.getListaUsuariosSeguidores().remove(usuario))){
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
+    }
 }

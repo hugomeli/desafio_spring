@@ -33,8 +33,6 @@ public class PublicacaoController {
     @GetMapping("/followed/{userId}/list")
     public ResponseEntity<PublicacoesRecentesDTO> getPublicacoesRecentes(@PathVariable Long userId){
         PublicacoesRecentesDTO pubRecentes = this.publicacaoService.publicacoesRecentes(userId);
-        System.out.println(pubRecentes.toString());
-        return ResponseEntity.ok(pubRecentes);
-//        return new ResponseEntity<>(this.publicacaoService.publicacoesRecentes(userId), HttpStatus.OK);
+        return new ResponseEntity<>(pubRecentes, HttpStatus.OK);
     }
 }

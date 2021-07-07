@@ -45,4 +45,9 @@ public class UsuariosController {
         VendedoresQueUsuarioSegueDTO vendedoresQueUsuarioSegue = this.usuariosService.getVendedoresSeguidos(userID);
         return new ResponseEntity<>(vendedoresQueUsuarioSegue, HttpStatus.OK);
     }
+
+    @PostMapping("{userId}/unfollow/{userIdToUnfollow}")
+    public ResponseEntity<?> unfollowVendedor(@PathVariable Long userId, @PathVariable Long userIdToUnfollow){
+        return this.usuariosService.deixarDeSeguir(userId, userIdToUnfollow);
+    }
 }
