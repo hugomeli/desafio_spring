@@ -1,11 +1,10 @@
 package br.com.mercadolivre.bootcamp.desafiospring.controller;
 
-import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Publicacao;
-import br.com.mercadolivre.bootcamp.desafiospring.model.repository.PublicacaoRepository;
+import br.com.mercadolivre.bootcamp.desafiospring.model.forms.PublicacaoFormDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.service.PublicacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,7 @@ public class PublicacaoController {
     }
 
     @PostMapping("/newpost")
-    public ResponseEntity<?> cadastraPublicacao(@RequestBody Publicacao publicacao){
-        return publicacaoService.adicionaPostagem(publicacao);
+    public ResponseEntity<?> cadastraPublicacao(@Validated @RequestBody PublicacaoFormDTO pubFormDTO){
+        return this.publicacaoService.adicionaPostagem(PublicacaoFormDTO.converte(pubFormDTO));
     }
 }

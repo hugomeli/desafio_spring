@@ -1,12 +1,19 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.entity;
 
+import br.com.mercadolivre.bootcamp.desafiospring.utils.SomeUtils;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.Date;
 
 public class Publicacao {
 
     private Long userId;
     private Long idPost;
-    private String date;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy",
+            locale = "pt-BR", timezone = "America/Sao_Paulo")
+    private Date date;
     private Produto detail;
     private int category;
     private double price;
@@ -14,7 +21,7 @@ public class Publicacao {
     public Publicacao() {
     }
 
-    public Publicacao(Long userId, Long idPost, String date, Produto detail, int category, double price) {
+    public Publicacao(Long userId, Long idPost, Date date, Produto detail, int category, double price) {
         this.userId = userId;
         this.idPost = idPost;
         this.date = date;
@@ -39,11 +46,11 @@ public class Publicacao {
         this.idPost = idPost;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
