@@ -9,15 +9,15 @@ public class UsuariosSeguemVendedorDTO {
 
     private Long userId;
     private String userName;
-    private List<UsuarioDTO> usuariosSeguidores;
+    private List<UsuarioDTO> followers;
 
     public UsuariosSeguemVendedorDTO() {
     }
 
-    public UsuariosSeguemVendedorDTO(Long userId, String userName, List<UsuarioDTO> usuariosSeguidores) {
+    public UsuariosSeguemVendedorDTO(Long userId, String userName, List<UsuarioDTO> followers) {
         this.userId = userId;
         this.userName = userName;
-        this.usuariosSeguidores = usuariosSeguidores;
+        this.followers = followers;
     }
 
     public static UsuariosSeguemVendedorDTO converte(Vendedor vendedor, List<Usuario> listaUsuarios){
@@ -44,11 +44,11 @@ public class UsuariosSeguemVendedorDTO {
         this.userName = userName;
     }
 
-    public List<UsuarioDTO> getUsuariosSeguidores() {
-        return usuariosSeguidores;
+    public List<UsuarioDTO> getFollowers() {
+        return followers;
     }
 
-    public void setUsuariosSeguidores(List<UsuarioDTO> usuariosSeguidores) {
-        this.usuariosSeguidores = usuariosSeguidores;
+    public void setFollowers(List<UsuarioDTO> followers) {
+        this.followers = followers;
     }
 }
