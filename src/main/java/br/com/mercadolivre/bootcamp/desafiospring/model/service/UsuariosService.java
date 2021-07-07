@@ -1,5 +1,6 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.service;
 
+import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.UsuariosSeguemVendedorDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Usuario;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Vendedor;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.UsuarioRepository;
@@ -47,5 +48,10 @@ public class UsuariosService {
     public static boolean checaUsuarioSegueVendedor(Usuario usuario, Vendedor vendedorEncontrado){
         return usuario.getListaVendedoresSeguidos().stream()
                 .noneMatch(vendedor -> vendedor.getUserId().equals(vendedorEncontrado.getUserId()));
+    }
+
+    public UsuariosSeguemVendedorDTO getSeguidoresDto(Long userId){
+        Vendedor vendedorEncontrado = this.vendedorRepository.getVendedorById(userId);
+        return UsuariosSeguemVendedorDTO.converte(vendedorEncontrado, vendedorEncontrado.getListaUsuariosSeguidores());
     }
 }

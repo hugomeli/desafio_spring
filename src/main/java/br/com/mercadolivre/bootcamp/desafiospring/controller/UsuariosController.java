@@ -1,6 +1,7 @@
 package br.com.mercadolivre.bootcamp.desafiospring.controller;
 
 
+import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.UsuariosSeguemVendedorDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.VendedorContagemSeguidoresDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Vendedor;
 import br.com.mercadolivre.bootcamp.desafiospring.model.service.UsuariosService;
@@ -32,4 +33,9 @@ public class UsuariosController {
         return new ResponseEntity<>(VendedorContagemSeguidoresDTO.converte(vendedor), HttpStatus.OK);
     }
 
+    @GetMapping("/{userId}/followers/list")
+    public ResponseEntity<UsuariosSeguemVendedorDTO> getFollowers(@PathVariable Long userId){
+        UsuariosSeguemVendedorDTO usuariosSeguemVendedor = this.usuariosService.getSeguidoresDto(userId);
+        return new ResponseEntity<>(usuariosSeguemVendedor, HttpStatus.OK);
+    }
 }
