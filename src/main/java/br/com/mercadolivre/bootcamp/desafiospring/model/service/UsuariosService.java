@@ -28,7 +28,7 @@ public class UsuariosService {
         Usuario usuarioEncontrado = this.usuarioRepository.getUsuarioById(userId);
         Vendedor vendedorEncontrado = this.vendedorRepository.getVendedorById(userIdToFollow);
         if (usuarioEncontrado != null && vendedorEncontrado != null){
-            if (checaUsuarioSegueVendedor(usuarioEncontrado, vendedorEncontrado)){
+            if (!checaUsuarioSegueVendedor(usuarioEncontrado, vendedorEncontrado)){
                 usuarioEncontrado.adicionaVendedorSeguido(vendedorEncontrado);
                 vendedorEncontrado.adicionaUsuarioSeguidor(usuarioEncontrado);
                 return ResponseEntity.ok().build();
@@ -46,9 +46,11 @@ public class UsuariosService {
         return vendedorRepository;
     }
 
+
+    // Verifica se um usuário já está seguindo um vendedor
     public static boolean checaUsuarioSegueVendedor(Usuario usuario, Vendedor vendedorEncontrado){
         return usuario.getListaVendedoresSeguidos().stream()
-                .noneMatch(vendedor -> vendedor.getUserId().equals(vendedorEncontrado.getUserId()));
+                .anyMatch(vendedor -> vendedor.getUserId().equals(vendedorEncontrado.getUserId()));
     }
 
     public UsuariosSeguemVendedorDTO getSeguidoresDto(Long userId){
