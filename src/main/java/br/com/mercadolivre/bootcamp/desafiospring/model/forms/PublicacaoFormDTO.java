@@ -3,20 +3,33 @@ package br.com.mercadolivre.bootcamp.desafiospring.model.forms;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Produto;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Publicacao;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.OptBoolean;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class PublicacaoFormDTO {
 
+    @NotNull
     private Long userId;
+
+    @NotNull
     private Long id_post;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy"
-            , locale = "pt-BR", timezone = "America/Sao_Paulo")
+    @NotNull
+    @JsonSerialize(as = Date.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy",
+            lenient = OptBoolean.FALSE, locale = "pt-BR", timezone = "America/Sao_Paulo")
     private Date date;
 
+    @NotNull
     private Produto detail;
+
+    @NotNull
     private int category;
+
+    @NotNull
     private double price;
 
     public PublicacaoFormDTO() {

@@ -23,6 +23,9 @@ public class PublicacaoController {
 
     @PostMapping("/newpost")
     public ResponseEntity<?> cadastraPublicacao(@Validated @RequestBody PublicacaoFormDTO pubFormDTO){
-        return this.publicacaoService.adicionaPostagem(PublicacaoFormDTO.converte(pubFormDTO));
+        if (publicacaoService.formValido(pubFormDTO)){
+            return this.publicacaoService.adicionaPostagem(PublicacaoFormDTO.converte(pubFormDTO));
+        }
+        return ResponseEntity.badRequest().build();
     }
 }
