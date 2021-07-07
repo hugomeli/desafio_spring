@@ -26,9 +26,12 @@ public class UsuariosService {
         Usuario usuarioEncontrado = this.usuarioRepository.getUsuarioById(userId);
         Vendedor vendedorEncontrado = this.vendedorRepository.getVendedorById(userIdToFollow);
         if (usuarioEncontrado != null && vendedorEncontrado != null){
-            usuarioEncontrado.adicionaVendedorSeguido(vendedorEncontrado);
-            vendedorEncontrado.adicionaUsuarioSeguidor(usuarioEncontrado);
-            return ResponseEntity.ok().build();
+            if (checaUsuarioSegueVendedor(usuarioEncontrado, vendedorEncontrado)){
+                usuarioEncontrado.adicionaVendedorSeguido(vendedorEncontrado);
+                vendedorEncontrado.adicionaUsuarioSeguidor(usuarioEncontrado);
+                return ResponseEntity.ok().build();
+            }
+            return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.notFound().build();
     }
@@ -39,5 +42,10 @@ public class UsuariosService {
 
     public VendedorRepository getVendedorRepository(){
         return vendedorRepository;
+    }
+
+    public static boolean checaUsuarioSegueVendedor(Usuario usuario, Vendedor vendedorEncontrado){
+        return usuario.getListaVendedoresSeguidos().stream()
+                .noneMatch(vendedor -> vendedor.getId().equals(vendedorEncontrado.getId()));
     }
 }
