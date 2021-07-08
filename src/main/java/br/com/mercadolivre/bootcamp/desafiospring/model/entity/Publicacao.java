@@ -92,6 +92,22 @@ public class Publicacao implements Comparable<Publicacao>{
         this.price = price;
     }
 
+    public boolean isHasPromo() {
+        return hasPromo;
+    }
+
+    public void setHasPromo(boolean hasPromo) {
+        this.hasPromo = hasPromo;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
     @Override
     public int compareTo(Publicacao o) {
         return this.getDate().compareTo(o.getDate());

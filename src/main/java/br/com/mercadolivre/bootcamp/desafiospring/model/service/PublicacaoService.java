@@ -1,6 +1,7 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.service;
 
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacaoDTO;
+import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacaoPromoDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacoesRecentesDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Produto;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Publicacao;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PublicacaoService {
@@ -89,6 +91,18 @@ public class PublicacaoService {
 
     public boolean formPromoValido(PublicacaoPromoFormDTO pubPromoDTO) {
         return produtoValido(pubPromoDTO.getDetail()) &&
-                (vendedorExiste(pubPromoDTO.getUserId()));
+                (vendedorExiste(pubPromoDTO.getUserId()) &&
+                        pubPromoDTO.getDiscount() > 0);
+    }
+
+    public List<Publicacao> publicacoesPromoByVendedor(Vendedor vendedor){
+        return this.publicacaoRepository.getAll().stream()
+                .filter(vendedorAnalisado -> vendedorAnalisado.getUserId().equals(vendedor.getUserId()))
+                .filter(Publicacao::isHasPromo)
+                .collect(Collectors.toList());
+    }
+
+    public int getNumeroPublicacoesByVendedor(Vendedor vendedor){
+        return publicacoesPromoByVendedor(vendedor).size();
     }
 }
