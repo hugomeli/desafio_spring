@@ -7,6 +7,7 @@ import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Usuario;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Vendedor;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.UsuarioRepository;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.VendedorRepository;
+import br.com.mercadolivre.bootcamp.desafiospring.validations.exception.OrdenacaoInvalidaException;
 import org.apache.logging.log4j.util.PropertySource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -67,6 +68,8 @@ public class UsuariosService {
             listaUsuarios.sort(Comparator.comparing(Usuario::getUserName));
         } else if (ordem.equals("name_desc")) {
             listaUsuarios.sort(Comparator.reverseOrder());
+        } else {
+            throw new OrdenacaoInvalidaException();
         }
         return UsuariosSeguemVendedorDTO.converte(vendedorEncontrado, listaUsuarios);
 //        Vendedor vendedorEncontrado = this.vendedorRepository.getVendedorById(userId);
@@ -80,6 +83,8 @@ public class UsuariosService {
             listaVendedores.sort(Comparator.comparing(Vendedor::getUserName));
         } else if (ordem.equals("name_desc")){
             listaVendedores.sort(Comparator.reverseOrder());
+        } else {
+            throw new OrdenacaoInvalidaException();
         }
         return VendedoresQueUsuarioSegueDTO.converte(usuarioEncontrado, usuarioEncontrado.getListaVendedoresSeguidos());
     }
