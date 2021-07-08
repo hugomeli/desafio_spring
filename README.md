@@ -14,3 +14,10 @@ git clone git@github.com:hugomeli/desafio_spring.git
 ## Documentaçao
 O exercício pode ser acessado no caminho [/documentacao/exercicio.pdf](documentacao/exercicio.pdf)
 A documentaçao da API pode ser acessada no caminho [/documentacao/api.pdf](documentacao/api.pdf)
+
+## Melhorias feitas
+
+* Caso tente acessar um userId (Usuario ou Vendedor) que não exista, retornará 404 - Not Found.
+* Caso o id da publicação já exista, a mesma não será cadastrada e retornará Bad Request.
+* Ao cadastrar uma publicacão (promocional ou não) há a verificação dos campos recebidos.
+* Caso o parâmetro de ordenação seja inválido, retornará 400 Bad Request.
