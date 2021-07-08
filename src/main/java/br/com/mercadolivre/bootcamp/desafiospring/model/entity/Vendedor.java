@@ -2,32 +2,14 @@ package br.com.mercadolivre.bootcamp.desafiospring.model.entity;
 
 import java.util.List;
 
-public class Vendedor implements Comparable<Vendedor>{
+public class Vendedor extends UsuarioAbstrato implements Comparable<Vendedor>{
 
-    private Long userId;
-    private String userName;
+
     private List<Usuario> listaUsuariosSeguidores;
 
     public Vendedor(Long userId, String userName, List<Usuario> listaUsuariosSeguidores) {
-        this.userId = userId;
-        this.userName = userName;
+        super(userId, userName);
         this.listaUsuariosSeguidores = listaUsuariosSeguidores;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public List<Usuario> getListaUsuariosSeguidores() {
