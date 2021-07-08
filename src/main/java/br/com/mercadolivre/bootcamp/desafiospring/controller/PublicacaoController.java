@@ -31,8 +31,9 @@ public class PublicacaoController {
     }
 
     @GetMapping("/followed/{userId}/list")
-    public ResponseEntity<PublicacoesRecentesDTO> getPublicacoesRecentes(@PathVariable Long userId){
-        PublicacoesRecentesDTO pubRecentes = this.publicacaoService.publicacoesRecentes(userId);
+    public ResponseEntity<PublicacoesRecentesDTO> getPublicacoesRecentes(@PathVariable Long userId,
+                                                                         @RequestParam(defaultValue = "") String order){
+        PublicacoesRecentesDTO pubRecentes = this.publicacaoService.publicacoesRecentes(userId, order);
         return new ResponseEntity<>(pubRecentes, HttpStatus.OK);
     }
 }

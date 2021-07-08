@@ -11,12 +11,14 @@ import br.com.mercadolivre.bootcamp.desafiospring.model.repository.PublicacaoRep
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.UsuarioRepository;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.VendedorRepository;
 import br.com.mercadolivre.bootcamp.desafiospring.utils.SomeUtils;
+import br.com.mercadolivre.bootcamp.desafiospring.validations.exception.OrdenacaoInvalidaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -68,27 +70,19 @@ public class PublicacaoService {
                 .anyMatch(publicacao -> publicacao.getIdPost().equals(publicacaoProcurada.getIdPost()));
     }
 
-//    public PublicacoesRecentesDTO publicacoesRecentes(Long userId){
-//        List<PublicacaoDTO> publicacoesDto = new ArrayList<>();
-//        List<Vendedor> vendedoresSeguidos = usuarioRepository.getUsuarioById(userId).getListaVendedoresSeguidos();
-//        for (Vendedor vendedorSeguido:
-//             vendedoresSeguidos) {
-//            for (Publicacao publicacao: publicacaoRepository.encontrarPorIdVendedor(vendedorSeguido.getUserId())){
-//                publicacoesDto.add(PublicacaoDTO.converte(publicacao));
-//            }
-//        }
-//        return new PublicacoesRecentesDTO(userId, publicacoesDto);
-//    }
-
-    public PublicacoesRecentesDTO publicacoesRecentes(Long userId){
+    public PublicacoesRecentesDTO publicacoesRecentes(Long userId, String ordem){
         Usuario usuario = this.usuarioRepository.getUsuarioById(userId);
         Date filtrarData = SomeUtils.getDataDuasSemanasAtras(new Date());
 
         List<Publicacao> publicacoesVendedores = this.publicacaoRepository.encontrarPorIdVendedorOrdemData(
                 usuario.getListaVendedoresSeguidos(), filtrarData);
-
+        if (ordem.equals("") || (ordem.equals("date_asc"))){
+            publicacoesVendedores.sort(Comparator.comparing(Publicacao::getDate));
+        } else if (ordem.equals("date_desc")){
+            publicacoesVendedores.sort(Comparator.reverseOrder());
+        } else{
+            throw new OrdenacaoInvalidaException();
+        }
         return PublicacoesRecentesDTO.converte(userId, publicacoesVendedores);
     }
-
-
 }

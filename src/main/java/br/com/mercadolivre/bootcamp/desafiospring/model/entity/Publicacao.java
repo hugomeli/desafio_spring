@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Date;
 
-public class Publicacao {
+public class Publicacao implements Comparable<Publicacao>{
 
     private Long userId;
     private Long idPost;
@@ -76,5 +76,10 @@ public class Publicacao {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public int compareTo(Publicacao o) {
+        return this.getDate().compareTo(o.getDate());
     }
 }
