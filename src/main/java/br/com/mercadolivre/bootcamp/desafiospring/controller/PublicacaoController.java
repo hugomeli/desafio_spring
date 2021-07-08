@@ -64,13 +64,10 @@ public class PublicacaoController {
     }
 
     @GetMapping("/{userId}/list")
-    public ResponseEntity<PublicacoesPromoDTO> getPubPromoByVendedor(@PathVariable Long userId){
+    public ResponseEntity<PublicacoesPromoDTO> getPubPromoByVendedor(@PathVariable Long userId,
+                                                                     @RequestParam(defaultValue = "") String order){
         Vendedor vendedor = this.usuariosService.getVendedorRepository().getVendedorById(userId);
-        return new ResponseEntity<>(
-                PublicacoesPromoDTO.converteListPub(
-                        vendedor,
-                        publicacaoService.publicacoesPromoByVendedor(vendedor)
-                ),
+        return new ResponseEntity<>(this.publicacaoService.getPublicacoesPromoDoVendedor(vendedor, order),
                 HttpStatus.OK
         );
     }

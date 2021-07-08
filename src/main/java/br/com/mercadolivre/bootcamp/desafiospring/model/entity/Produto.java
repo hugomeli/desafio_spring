@@ -1,6 +1,6 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.entity;
 
-public class Produto {
+public class Produto implements Comparable<Produto>{
     private Long productId;
     private String productName;
     private String type;
@@ -70,4 +70,8 @@ public class Produto {
         this.notes = notes;
     }
 
+    @Override
+    public int compareTo(Produto o) {
+        return this.getProductName().compareTo(o.getProductName());
+    }
 }

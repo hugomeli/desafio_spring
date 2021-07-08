@@ -1,5 +1,6 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.service;
 
+import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacoesPromoDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacoesRecentesDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Produto;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Publicacao;
@@ -101,5 +102,17 @@ public class PublicacaoService {
 
     public int getNumeroPublicacoesByVendedor(Vendedor vendedor){
         return publicacoesPromoByVendedor(vendedor).size();
+    }
+
+    public PublicacoesPromoDTO getPublicacoesPromoDoVendedor(Vendedor vendedor, String ordem){
+        List<Publicacao> publicacoesPromo = publicacoesPromoByVendedor(vendedor);
+        if (ordem.equals("name_asc")){
+            publicacoesPromo.sort(Comparator.comparing(Publicacao::getDetail));
+        } else if (ordem.equals("name_desc")){
+            publicacoesPromo.sort(Comparator.comparing(Publicacao::getDetail).reversed());
+        } else{
+            throw new OrdenacaoInvalidaException();
+        }
+        return PublicacoesPromoDTO.converteListPub(vendedor, publicacoesPromo);
     }
 }
