@@ -21,3 +21,8 @@ A documentaçao da API pode ser acessada no caminho [/documentacao/api.pdf](docu
 * Caso o id da publicação já exista, a mesma não será cadastrada e retornará Bad Request.
 * Ao cadastrar uma publicacão (promocional ou não) há a verificação dos campos recebidos.
 * Caso o parâmetro de ordenação seja inválido, retornará 400 Bad Request.
+* No Requisito US 0012 é possível pesquisar por ordem alfabética. Para isso, 
+os métodos serão os seguintes:
+  - GET /products/{userId}/list?order=name_asc
+  - GET /products/{userId}/list?order=name_desc
+  - Obs.: o método padrão continua em vigor. GET /products/{userId}/list
