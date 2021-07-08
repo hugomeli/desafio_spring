@@ -7,6 +7,7 @@ import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Publicacao;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Usuario;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Vendedor;
 import br.com.mercadolivre.bootcamp.desafiospring.model.forms.PublicacaoFormDTO;
+import br.com.mercadolivre.bootcamp.desafiospring.model.forms.PublicacaoPromoFormDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.PublicacaoRepository;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.UsuarioRepository;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.VendedorRepository;
@@ -84,5 +85,10 @@ public class PublicacaoService {
             throw new OrdenacaoInvalidaException();
         }
         return PublicacoesRecentesDTO.converte(userId, publicacoesVendedores);
+    }
+
+    public boolean formPromoValido(PublicacaoPromoFormDTO pubPromoDTO) {
+        return produtoValido(pubPromoDTO.getDetail()) &&
+                (vendedorExiste(pubPromoDTO.getUserId()));
     }
 }

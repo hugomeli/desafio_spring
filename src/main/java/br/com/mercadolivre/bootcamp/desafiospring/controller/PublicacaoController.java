@@ -2,6 +2,7 @@ package br.com.mercadolivre.bootcamp.desafiospring.controller;
 
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacoesRecentesDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.forms.PublicacaoFormDTO;
+import br.com.mercadolivre.bootcamp.desafiospring.model.forms.PublicacaoPromoFormDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.service.PublicacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,5 +36,13 @@ public class PublicacaoController {
                                                                          @RequestParam(defaultValue = "") String order){
         PublicacoesRecentesDTO pubRecentes = this.publicacaoService.publicacoesRecentes(userId, order);
         return new ResponseEntity<>(pubRecentes, HttpStatus.OK);
+    }
+
+    @PostMapping("/newpromopost")
+    public ResponseEntity<?> cadastraPublicacaoPromocional(@Valid @RequestBody PublicacaoPromoFormDTO pubPromoDTO){
+        if (publicacaoService.formPromoValido(pubPromoDTO)){
+            return this.publicacaoService.adicionaPostagem(PublicacaoPromoFormDTO.converte(pubPromoDTO));
+        }
+        return ResponseEntity.badRequest().build();
     }
 }

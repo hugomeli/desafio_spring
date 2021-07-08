@@ -17,6 +17,8 @@ public class Publicacao implements Comparable<Publicacao>{
     private Produto detail;
     private int category;
     private double price;
+    private boolean hasPromo;
+    private double discount;
 
     public Publicacao() {
     }
@@ -28,6 +30,18 @@ public class Publicacao implements Comparable<Publicacao>{
         this.detail = detail;
         this.category = category;
         this.price = price;
+    }
+
+    public Publicacao(Long userId, Long idPost, Date date,
+                      Produto detail, int category, double price, boolean hasPromo, double discount) {
+        this.userId = userId;
+        this.idPost = idPost;
+        this.date = date;
+        this.detail = detail;
+        this.category = category;
+        this.price = price;
+        this.hasPromo = hasPromo;
+        this.discount = discount;
     }
 
     public Long getUserId() {
