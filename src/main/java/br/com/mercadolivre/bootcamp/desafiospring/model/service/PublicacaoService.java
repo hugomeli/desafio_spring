@@ -75,10 +75,10 @@ public class PublicacaoService {
 
         List<Publicacao> publicacoesVendedores = this.publicacaoRepository.encontrarPorIdVendedorOrdemData(
                 usuario.getListaVendedoresSeguidos(), filtrarData);
-        if (ordem.equals("") || (ordem.equals("date_asc"))){
-            publicacoesVendedores.sort(Comparator.comparing(Publicacao::getDate));
-        } else if (ordem.equals("date_desc")){
+        if (ordem.equals("") || (ordem.equals("date_desc"))){
             publicacoesVendedores.sort(Comparator.reverseOrder());
+        } else if (ordem.equals("date_asc")){
+            publicacoesVendedores.sort(Comparator.comparing(Publicacao::getDate));
         } else{
             throw new OrdenacaoInvalidaException();
         }
