@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/users")
 public class UsuariosController {
@@ -35,14 +38,17 @@ public class UsuariosController {
     }
 
     @GetMapping("/{userId}/followers/list")
-    public ResponseEntity<UsuariosSeguemVendedorDTO> getFollowers(@PathVariable Long userId){
-        UsuariosSeguemVendedorDTO usuariosSeguemVendedor = this.usuariosService.getSeguidoresDto(userId);
+    public ResponseEntity<UsuariosSeguemVendedorDTO> getFollowers(@PathVariable Long userId,
+                                                                  @RequestParam(defaultValue = "") String order){
+        UsuariosSeguemVendedorDTO usuariosSeguemVendedor = this.usuariosService.getSeguidoresDto(userId, order);
         return new ResponseEntity<>(usuariosSeguemVendedor, HttpStatus.OK);
     }
 
     @GetMapping("/{userID}/followed/list")
-    public ResponseEntity<VendedoresQueUsuarioSegueDTO> getFollowedList(@PathVariable Long userID){
-        VendedoresQueUsuarioSegueDTO vendedoresQueUsuarioSegue = this.usuariosService.getVendedoresSeguidos(userID);
+    public ResponseEntity<VendedoresQueUsuarioSegueDTO> getFollowedList(@PathVariable Long userID,
+                                                                        @RequestParam(defaultValue = "") String order){
+        VendedoresQueUsuarioSegueDTO vendedoresQueUsuarioSegue =
+                this.usuariosService.getVendedoresSeguidos(userID, order);
         return new ResponseEntity<>(vendedoresQueUsuarioSegue, HttpStatus.OK);
     }
 

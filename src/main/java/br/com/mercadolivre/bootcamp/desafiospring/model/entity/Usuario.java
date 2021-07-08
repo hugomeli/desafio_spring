@@ -2,7 +2,7 @@ package br.com.mercadolivre.bootcamp.desafiospring.model.entity;
 
 import java.util.List;
 
-public class Usuario {
+public class Usuario implements Comparable<Usuario> {
 
     private Long userId;
     private String userName;
@@ -43,5 +43,10 @@ public class Usuario {
 
     public void adicionaVendedorSeguido(Vendedor vendedor){
         this.listaVendedoresSeguidos.add(vendedor);
+    }
+
+    @Override
+    public int compareTo(Usuario o) {
+        return this.getUserName().compareTo(o.getUserName());
     }
 }

@@ -1,14 +1,21 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.service;
 
+import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.UsuarioDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.UsuariosSeguemVendedorDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.VendedoresQueUsuarioSegueDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Usuario;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Vendedor;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.UsuarioRepository;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.VendedorRepository;
+import org.apache.logging.log4j.util.PropertySource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.text.CollationElementIterator;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 
 @Service
@@ -53,13 +60,27 @@ public class UsuariosService {
                 .anyMatch(vendedor -> vendedor.getUserId().equals(vendedorEncontrado.getUserId()));
     }
 
-    public UsuariosSeguemVendedorDTO getSeguidoresDto(Long userId){
+    public UsuariosSeguemVendedorDTO getSeguidoresDto(Long userId, String ordem){
         Vendedor vendedorEncontrado = this.vendedorRepository.getVendedorById(userId);
-        return UsuariosSeguemVendedorDTO.converte(vendedorEncontrado, vendedorEncontrado.getListaUsuariosSeguidores());
+        List<Usuario> listaUsuarios = vendedorEncontrado.getListaUsuariosSeguidores();
+        if (ordem.equals("name_asc") || ordem.equals("")){
+            listaUsuarios.sort(Comparator.comparing(Usuario::getUserName));
+        } else if (ordem.equals("name_desc")) {
+            listaUsuarios.sort(Comparator.reverseOrder());
+        }
+        return UsuariosSeguemVendedorDTO.converte(vendedorEncontrado, listaUsuarios);
+//        Vendedor vendedorEncontrado = this.vendedorRepository.getVendedorById(userId);
+//        return UsuariosSeguemVendedorDTO.converte(vendedorEncontrado, vendedorEncontrado.getListaUsuariosSeguidores());
     }
 
-    public VendedoresQueUsuarioSegueDTO getVendedoresSeguidos(Long userId){
+    public VendedoresQueUsuarioSegueDTO getVendedoresSeguidos(Long userId, String ordem){
         Usuario usuarioEncontrado = this.usuarioRepository.getUsuarioById(userId);
+        List<Vendedor> listaVendedores = usuarioEncontrado.getListaVendedoresSeguidos();
+        if (ordem.equals("name_asc") || ordem.equals("")){
+            listaVendedores.sort(Comparator.comparing(Vendedor::getUserName));
+        } else if (ordem.equals("name_desc")){
+            listaVendedores.sort(Comparator.reverseOrder());
+        }
         return VendedoresQueUsuarioSegueDTO.converte(usuarioEncontrado, usuarioEncontrado.getListaVendedoresSeguidos());
     }
 
