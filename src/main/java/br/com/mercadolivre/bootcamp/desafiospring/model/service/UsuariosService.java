@@ -1,6 +1,5 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.service;
 
-import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.UsuarioDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.UsuariosSeguemVendedorDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.VendedoresQueUsuarioSegueDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Usuario;
@@ -8,13 +7,10 @@ import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Vendedor;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.UsuarioRepository;
 import br.com.mercadolivre.bootcamp.desafiospring.model.repository.VendedorRepository;
 import br.com.mercadolivre.bootcamp.desafiospring.validations.exception.OrdenacaoInvalidaException;
-import org.apache.logging.log4j.util.PropertySource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.text.CollationElementIterator;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -72,8 +68,6 @@ public class UsuariosService {
             throw new OrdenacaoInvalidaException();
         }
         return UsuariosSeguemVendedorDTO.converte(vendedorEncontrado, listaUsuarios);
-//        Vendedor vendedorEncontrado = this.vendedorRepository.getVendedorById(userId);
-//        return UsuariosSeguemVendedorDTO.converte(vendedorEncontrado, vendedorEncontrado.getListaUsuariosSeguidores());
     }
 
     public VendedoresQueUsuarioSegueDTO getVendedoresSeguidos(Long userId, String ordem){

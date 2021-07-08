@@ -1,7 +1,5 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.service;
 
-import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacaoDTO;
-import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacaoPromoDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacoesRecentesDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Produto;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Publicacao;
@@ -15,11 +13,9 @@ import br.com.mercadolivre.bootcamp.desafiospring.model.repository.VendedorRepos
 import br.com.mercadolivre.bootcamp.desafiospring.utils.SomeUtils;
 import br.com.mercadolivre.bootcamp.desafiospring.validations.exception.OrdenacaoInvalidaException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;

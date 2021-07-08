@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.OptBoolean;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jdk.jfr.BooleanFlag;
-import org.hibernate.validator.constraints.Range;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Negative;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 

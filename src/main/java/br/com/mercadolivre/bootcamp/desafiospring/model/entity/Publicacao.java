@@ -1,8 +1,7 @@
 package br.com.mercadolivre.bootcamp.desafiospring.model.entity;
 
-import br.com.mercadolivre.bootcamp.desafiospring.utils.SomeUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 
 import java.util.Date;
 

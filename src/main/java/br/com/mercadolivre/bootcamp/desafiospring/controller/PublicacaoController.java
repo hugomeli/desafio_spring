@@ -3,7 +3,6 @@ package br.com.mercadolivre.bootcamp.desafiospring.controller;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacoesPromoDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacoesRecentesDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.VendedorContagemPubPromoDTO;
-import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.VendedorContagemSeguidoresDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Vendedor;
 import br.com.mercadolivre.bootcamp.desafiospring.model.forms.PublicacaoFormDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.forms.PublicacaoPromoFormDTO;
@@ -12,11 +11,9 @@ import br.com.mercadolivre.bootcamp.desafiospring.model.service.UsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/products")
