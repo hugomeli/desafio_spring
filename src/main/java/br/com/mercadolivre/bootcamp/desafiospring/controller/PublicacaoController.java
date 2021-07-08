@@ -1,5 +1,6 @@
 package br.com.mercadolivre.bootcamp.desafiospring.controller;
 
+import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacoesPromoDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.PublicacoesRecentesDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.VendedorContagemPubPromoDTO;
 import br.com.mercadolivre.bootcamp.desafiospring.model.dtos.VendedorContagemSeguidoresDTO;
@@ -58,8 +59,22 @@ public class PublicacaoController {
     public ResponseEntity<VendedorContagemPubPromoDTO> countPubPromo(@PathVariable Long userId){
         Vendedor vendedor = this.usuariosService.getVendedorRepository().getVendedorById(userId);
         return new ResponseEntity<>(
-                VendedorContagemPubPromoDTO.converte(vendedor,
+                VendedorContagemPubPromoDTO.converte(
+                        vendedor,
                         this.publicacaoService.getNumeroPublicacoesByVendedor(vendedor))
-                , HttpStatus.OK);
+                , HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/{userId}/list")
+    public ResponseEntity<PublicacoesPromoDTO> getPubPromoByVendedor(@PathVariable Long userId){
+        Vendedor vendedor = this.usuariosService.getVendedorRepository().getVendedorById(userId);
+        return new ResponseEntity<>(
+                PublicacoesPromoDTO.converteListPub(
+                        vendedor,
+                        publicacaoService.publicacoesPromoByVendedor(vendedor)
+                ),
+                HttpStatus.OK
+        );
     }
 }

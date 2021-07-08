@@ -5,6 +5,7 @@ import br.com.mercadolivre.bootcamp.desafiospring.model.entity.Publicacao;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.OptBoolean;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import jdk.jfr.BooleanFlag;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Min;
@@ -36,6 +37,7 @@ public class PublicacaoPromoFormDTO {
     private double price;
 
     @NotNull
+    @BooleanFlag
     private boolean hasPromo;
 
     @NotNull

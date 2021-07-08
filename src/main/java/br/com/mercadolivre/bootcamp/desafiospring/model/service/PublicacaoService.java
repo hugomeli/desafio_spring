@@ -92,7 +92,8 @@ public class PublicacaoService {
     public boolean formPromoValido(PublicacaoPromoFormDTO pubPromoDTO) {
         return produtoValido(pubPromoDTO.getDetail()) &&
                 (vendedorExiste(pubPromoDTO.getUserId()) &&
-                        pubPromoDTO.getDiscount() > 0);
+                        pubPromoDTO.getDiscount() > 0 &&
+                        pubPromoDTO.isHasPromo());
     }
 
     public List<Publicacao> publicacoesPromoByVendedor(Vendedor vendedor){
