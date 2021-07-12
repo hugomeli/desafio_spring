@@ -14,6 +14,7 @@ git clone git@github.com:hugomeli/desafio_spring.git
 ## Documentaçao
 O exercício pode ser acessado no caminho [/documentacao/exercicio.pdf](documentacao/exercicio.pdf)
 A documentaçao da API pode ser acessada no caminho [/documentacao/api.pdf](documentacao/api.pdf)
+Arquivo postman contando os endpoints [/documentacao/SocialMeli.postman_collection.json](documentacao/SocialMeli.postman_collection.json)
 
 ## Melhorias feitas
 
